@@ -1,0 +1,15 @@
+{% extends 'theme/base.html' %}
+{% block lecturer_listing_is_active %}active{% endblock%}
+{% block subheader %}Lecturer listing{% endblock %}
+{% block pagecontent %}
+    {{ block.super }}
+        <ul>
+        {% for lecturer in lecturer %}
+            <li>
+                {{ lecturer.name }}
+                <a href="{% url 'lecturer_detail' lecturer.id %}">Detaljer</a>
+
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

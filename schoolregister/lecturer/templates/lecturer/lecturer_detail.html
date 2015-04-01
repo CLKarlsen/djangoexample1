@@ -1,0 +1,41 @@
+{% extends 'theme/base.html' %}
+{% block subheader %}Lecturer details{% endblock %}
+{% block pagecontent %}
+
+    <h2>Details on {{ lecturer.name }}</h2> 
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Study</th>
+                <th>Number of passed exams</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ lecturer.name }}</td>
+                <td>{{ lecturer.email }}</td>
+                <td>{{ lecturer.department }}</td>
+                <td id="number_of_courses_cell">{{ lecturer.number_of_courses }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a id="increase_number_of_courses_button" class="btn btn-default" href="#" role="button">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
+        Increase number of courses
+    </a>
+
+    <input type="hidden" id="increase_number_of_courses_url" value="/lecturer/{{ lecturer.id }}/increase_number_of_courses">
+
+
+    <a id="decrease_number_of_courses_button" class="btn btn-default" href="#" role="button">
+        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> 
+        Decrease number of courses
+    </a>
+
+    <input type="hidden" id="decrease_number_of_courses_url" value="/lecturer/{{ lecturer.id }}/decrease_number_of_courses">
+
+{% endblock %}

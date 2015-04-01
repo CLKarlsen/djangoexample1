@@ -14,6 +14,28 @@ $(document).ready(function(){
         });
     });
 
+    $("#increase_number_of_courses_button").click(function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: $('#increase_number_of_courses_url').val()
+        })
+        .done(function(data){
+            var number_of_courses_updated = data['number_of_courses_updated'];
+            $("#number_of_courses_cell").html(number_of_courses_updated);
+        });
+    });
+
+    $("#decrease_number_of_courses_button").click(function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: $('#decrease_number_of_courses_url').val()
+        })
+        .done(function(data){
+            var number_of_courses_updated = data['number_of_courses_updated'];
+            $("#number_of_courses_cell").html(number_of_courses_updated);
+        });
+    });
+
 
 
 
