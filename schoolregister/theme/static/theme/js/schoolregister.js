@@ -1,6 +1,10 @@
-
-
 $(document).ready(function(){
+
+    $(".add-points-link").click(function(event) {
+        event.preventDefault();
+        var note_id = $(this).data("noteid");
+        alert("hei " + note_id);
+    });
 
 
     $("#increase_passed_exams_button").click(function(event) {
@@ -35,6 +39,8 @@ $(document).ready(function(){
             $("#number_of_courses_cell").html(number_of_courses_updated);
         });
     });
+
+
 
 
 
