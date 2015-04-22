@@ -42,7 +42,7 @@
             <h3> Notater om {{ student.name }}</h3>
 
             <table class="table"> 
-                {% for note in student.notes.all %}
+                {% for note in notes %}
                 <tr>
                     <td>{{ note.note }} </td>
                     <td> {{ note.created_by }} </td>
@@ -56,6 +56,31 @@
                 </tr>
                 {% endfor %}
             </table>
+
+            <nav>
+                <ul class="pager">
+                    {% if notes.has_previous %}
+                    <li class="previous">
+                        <a href="?page={{ notes.previous_page_number }}">
+                            <span aria-hidden="true"> &larr; </span> Forrige
+                        </a>
+                    </li>
+                    {% endif %}
+                    <li>
+                        <span class="current">
+                            Side {{ notes.number }} av {{ notes.paginator.num_pages }}
+                        </span>
+                    </li>
+                    {% if notes.has_next %}
+                    <li class="next">
+                        <a href="?page={{ notes.next_page_number }}">
+                            Neste <span aria-hidden="true"> &rarr; </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+
         </div>
     </div>
 
@@ -80,7 +105,11 @@
     </div>
     {% endif %}
 
-    <input type="hidden" id="passed_exams_url" value="/students/{{ student.id }}/increase_passed_exams">
+    <input type="hidden" id="passed_exams_url" 
+        value="/students/{{ student.id }}/increase_passed_exams">
+
+    <input type="hidden" id="add_points_url" 
+        value="/students/{{ student.id }}/add_points">
 
 {% endblock %}
 

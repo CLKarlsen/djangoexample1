@@ -3,7 +3,14 @@ $(document).ready(function(){
     $(".add-points-link").click(function(event) {
         event.preventDefault();
         var note_id = $(this).data("noteid");
-        alert("hei " + note_id);
+        $.ajax({
+            url: $('#add_points_url').val() + "/" + note_id
+        })
+        .done(function(data){
+            var points_updated = data['points_updated'];
+            var points_element_id = "#id-points-for-note-" + note_id;
+            $(points_element_id).html(points_updated);
+        });
     });
 
 
@@ -17,6 +24,7 @@ $(document).ready(function(){
             $("#passed_exams_cell").html(passed_exams_updated);
         });
     });
+
 
     $("#increase_number_of_courses_button").click(function(event) {
         event.preventDefault();
